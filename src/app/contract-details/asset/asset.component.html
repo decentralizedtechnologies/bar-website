@@ -1,0 +1,28 @@
+<section id="details-asset-component">
+  <section class="section">
+    <div class="container">
+      <article>
+        <small>description</small>
+        <p>{{ assetSeriesContract.description }}</p>
+      </article>
+      <article>
+        <small>asset at address</small>
+        <p>{{ assetContract.address }}</p>
+      </article>
+      <article>
+        <small>owner</small>
+        <p>{{ assetContract.owner }}</p>
+      </article>
+      <article>
+        <small>pendingOwner</small>
+        <p>{{ assetContract.pendingOwner }}</p>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <a [routerLink]="['/contract', assetContract.address, 'details', 'asset-bar-tag']" class="btn btn-primary btn-lg btn-block">Print
+        BARTag</a>
+    </div>
+  </section>
+</section>

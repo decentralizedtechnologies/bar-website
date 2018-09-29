@@ -1,0 +1,51 @@
+<section id="details-asset-series-component">
+  <section class="section">
+    <div class="container">
+      <article>
+        <small>description</small>
+        <p>{{ assetSeriesContract.description }}</p>
+      </article>
+      <article>
+        <small>address</small>
+        <p>{{ assetSeriesContract.address }}</p>
+      </article>
+      <article>
+        <small>issuer</small>
+        <p>{{ assetSeriesContract.issuer }}</p>
+      </article>
+      <article>
+        <small>serial number</small>
+        <p>{{ assetSeriesContract.serialNumber }}</p>
+      </article>
+      <article>
+        <small>limit</small>
+        <p>{{ assetSeriesContract.limit }}</p>
+      </article>
+      <article>
+        <small>assets count</small>
+        <p>{{ assetSeriesContract.assetsCount }}</p>
+      </article>
+      <div *ngIf="serialAssets.length">
+        <h2>Serial Assets</h2>
+        <div *ngFor="let serialAsset of serialAssets">
+          <article>
+            <small>asset at address</small>
+            <a [routerLink]="['/contract', serialAsset.address, 'details', serialAsset.type]" class="d-block">{{
+              serialAsset.address }}</a>
+          </article>
+          <article>
+            <small>asset description</small>
+            <p>{{ serialAsset.description }}</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <a [routerLink]="['/contract/create', serialAssetContractType]" [queryParams]="{assetSeriesAddress: assetSeriesContract.address}"
+        class="btn btn-primary btn-lg btn-block">Issue
+        a new Asset</a>
+    </div>
+  </section>
+</section>

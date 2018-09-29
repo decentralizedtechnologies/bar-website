@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+@import "sass/bootstrap-variables";
+
+// EBM variables
+@import "sass/ebm-variables";
+@import "ebm/functions/ebm-functions";
+@import "ebm/helpers/ebm-helpers";
+@import "sass/ebm-fonts-setup";
+
+@mixin main {
+  position: relative;
+  min-height: 100vh;
+}

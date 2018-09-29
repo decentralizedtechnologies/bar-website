@@ -1,0 +1,55 @@
+/*
+  Bootstrap overrides
+*/
+
+// Use this in B4 _forms.scss for adjusting line-heights in special input types
+// @supports (-webkit-text-size-adjust:none) and (not (-ms-accelerator:true)) and (not (-moz-appearance:none)) {}
+
+.img-responsive {
+  width: 100%;
+}
+
+a.btn,
+button.btn,
+input[type="submit"].btn,
+.btn {
+  @include light;
+  border-radius: $border-radius-sm;
+  text-transform: uppercase;
+  font-size: $font-size-sm;
+  letter-spacing: 0.8px;
+  i {
+    font-size: $font-size-sm;
+    font-weight: bold;
+  }
+}
+
+@mixin input-dark-theme {
+  border: 1px solid darken($purple, 14%);
+  background-color: darken($purple, 7%);
+  color: white;
+  &:focus {
+    background-color: darken($purple, 14%);
+  }
+  &:placeholder {
+    color: $gray-300;
+  }
+  &:disabled {
+    background-color: darken($purple, 14%);
+  }
+}
+
+.form-group {
+  &.dark-theme {
+    .form-control {
+    }
+    label {
+      color: white;
+    }
+  }
+}
+
+
+
+
+

@@ -1,0 +1,42 @@
+<section id="details-serial-asset-component">
+  <section class="section">
+    <div class="container">
+      <article>
+        <small>asset at address</small>
+        <p>{{ serialAssetContract.address }}</p>
+      </article>
+      <article>
+        <small>description</small>
+        <p>{{ serialAssetContract.description }}</p>
+      </article>
+      <article>
+        <small>serialNumber</small>
+        <p>{{ serialAssetContract.serialNumber }}</p>
+      </article>
+      <article>
+        <small>owner</small>
+        <p>{{ serialAssetContract.owner }}</p>
+      </article>
+      <article>
+        <small>pendingOwner</small>
+        <p>{{ serialAssetContract.pendingOwner }}</p>
+      </article>
+      <h2>From Asset Series</h2>
+      <article>
+        <small>description</small>
+        <p>{{ assetSeriesContract.description }}</p>
+      </article>
+      <article>
+        <small>address</small>
+        <a [routerLink]="['/contract', assetSeriesContract.address, 'details', assetSeriesContract.type]" class="d-block">{{
+          assetSeriesContract.address }}</a>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <a [routerLink]="['/contract', serialAssetContract.address, 'details', 'asset-bar-tag']" class="btn btn-primary btn-lg btn-block">Print
+        BARTag</a>
+    </div>
+  </section>
+</section>

@@ -1,0 +1,77 @@
+<section id="deploy-asset-series-registry-component">
+  <section class="step" id="step-1" *ngIf="steps.estimateTxCosts.isCurrent">
+    <div class="container">
+      <header class="step-header">
+        <h5>Step {{ steps.estimateTxCosts.step }} of {{ stepCount }}</h5>
+      </header>
+
+      <h4>Calculating transaction costs</h4>
+      <article class="estimate" *ngFor="let estimate of steps.estimateTxCosts.estimates">
+        <p>ETH {{ estimate.txCost }}</p>
+        <p>{{ estimate.text }}</p>
+      </article>
+
+      <fieldset class="form-group dark-theme" *ngIf="steps.estimateTxCosts.isComplete">
+        <label for="gas-price">Gas Price (GWEI)</label>
+        <div class="input-group">
+          <input name="gas-price" type="number" class="form-control" placeholder="eg. 32" [(ngModel)]="gasPrice">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" (click)="updateGasPrice()">Update</button>
+          </div>
+        </div>
+      </fieldset>
+
+      <div *ngIf="steps.estimateTxCosts.hasError">
+        <p class="on-error">Insufficient funds to execute these transactions. Send ETH to your wallet address and
+          retry.</p>
+        <button class="btn btn-primary btn-block mb-3" (click)="shared.displayCrowdsaleShowModal()">See wallet address</button>
+        <button class="btn btn-outline-primary btn-block" (click)="init()">Retry</button>
+      </div>
+
+      <div *ngIf="steps.estimateTxCosts.isComplete">
+        <button class="btn btn-primary btn-block" (click)="deployAssetSeries()">Deploy</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step-2" *ngIf="steps.deployAssetSeries.isCurrent">
+    <div class="container">
+      <header class="step-header">
+        <h5>Step {{ steps.deployAssetSeries.step }} of {{ stepCount }}</h5>
+      </header>
+
+      <h4>
+        <i class="icon-loading2 spin" *ngIf="!steps.deployAssetSeries.isComplete || steps.deployAssetSeries.hasError"></i>
+        Issuing a new Asset Series contract</h4>
+      <p class="mb-2">Note: Transaction times depend on the Ethereum network. Do not refresh or close this page.</p>
+      <a class="mb-4 d-block" href="{{ eth.etherscanURL }}/address/{{ wallet.getAddress() }}" target="_blank">See
+        transaction</a>
+      <article class="estimate">
+        <p>Name</p>
+        <p>{{ assetSeriesRegistryContract.name }}</p>
+      </article>
+      <article class="estimate">
+        <p>Description</p>
+        <p>{{ assetSeriesRegistryContract.description }}</p>
+      </article>
+      <article class="estimate">
+        <p>Limit</p>
+        <p>{{ assetSeriesRegistryContract.limit }}</p>
+      </article>
+
+      <div *ngIf="steps.deployAssetSeries.hasError">
+        <p class="on-error" [innerHTML]="steps.deployAssetSeries.errorMessage | keepHtml"></p>
+        <button class="btn btn-outline-primary btn-block" (click)="deployAssetSeries()">Retry</button>
+      </div>
+
+      <div *ngIf="!steps.deployAssetSeries.isComplete">
+        <button class="btn btn-outline-primary btn-block" (click)="init()">Retry with higher gas price</button>
+      </div>
+
+      <div *ngIf="steps.deployAssetSeries.isComplete">
+        <button class="btn btn-outline-primary btn-block" (click)="finish()">See asset series contract</button>
+      </div>
+
+    </div>
+  </section>
+</section>

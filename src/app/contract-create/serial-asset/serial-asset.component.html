@@ -1,0 +1,15 @@
+<main id="create-serial-asset-component">
+  <div class="container">
+    <h4 class="text-white">Create a new Serial Asset</h4>
+    <fieldset class="form-group dark-theme">
+      <label for="">of asset series</label>
+      <input disabled="disabled" type="text" class="form-control disabled" placeholder="eg. SIC" [value]="assetSeriesContract.address">
+    </fieldset>
+    <fieldset class="form-group dark-theme">
+      <label for="">Description</label>
+      <input required type="text" class="form-control" placeholder="eg. SIC" [(ngModel)]="serialAssetContract.description">
+    </fieldset>
+    <p *ngIf="isInvalid" class="on-error">{{ errorMessage }}</p>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onCreateNewSerialAsset()">Estimate transaction costs</button>
+  </div>
+</main>

@@ -1,0 +1,17 @@
+<main id="create-asset-series-component">
+  <div class="container">
+    <h4 class="text-white">Create a new Asset Series</h4>
+    <fieldset class="form-group dark-theme">
+      <label for="">Description</label>
+      <input required type="text" class="form-control" placeholder="eg. SIC" [(ngModel)]="assetSeriesRegistryContract.description">
+    </fieldset>
+    <fieldset class="form-group dark-theme">
+      <label for="">Limit</label>
+      <input required type="text" class="form-control" placeholder="eg. 18" [(ngModel)]="assetSeriesRegistryContract.limit">
+    </fieldset>
+    <p *ngIf="isInvalid" class="on-error">{{ errorMessage }}</p>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onCreateNewAssetSeries()">Estimate transaction costs</button>
+
+    <a [routerLink]="['/contract', '0xF3f09B95D1c680810CE97a70C992858D26016C56', 'details', 'asset-series']" class="d-block">0xF3f09B95D1c680810CE97a70C992858D26016C56</a>
+  </div>
+</main>

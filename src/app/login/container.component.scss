@@ -1,0 +1,6 @@
+@import 'sass/global';
+
+#login-component {
+  @include flex-column-center;
+  @include main;
+}
