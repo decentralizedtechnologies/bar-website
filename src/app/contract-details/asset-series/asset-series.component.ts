@@ -38,6 +38,7 @@ export class AssetSeriesComponent implements OnInit {
     this.assetSeriesContract.getDescription()
     this.assetSeriesContract.getIssuer()
     this.assetSeriesContract.getSerialNumber()
+
     await this.assetSeriesContract.getAssetsCount()
     if (this.assetSeriesContract.assetsCount > 0) {
       this.getSerialAssetBySerialNumber(1)
@@ -45,18 +46,15 @@ export class AssetSeriesComponent implements OnInit {
   }
 
   async getSerialAssetBySerialNumber(number: number) {
-    console.log(number, this.assetSeriesContract.assetsCount)
     if (number > Number(this.assetSeriesContract.assetsCount)) {
       return
     }
     try {
-      const serialAssetAddress = await this.assetSeriesContract.getAssetBySerialNumber(number)
-      console.log(serialAssetAddress)
       const serialAssetContract = new SerialAssetContract(this.wallet.getInstance())
       serialAssetContract.connect()
+      const serialAssetAddress = await this.assetSeriesContract.getAssetBySerialNumber(number)
       serialAssetContract.setAddress(serialAssetAddress)
       serialAssetContract.setInstanceAddress()
-      console.log(serialAssetContract)
       await serialAssetContract.getSerialNumber()
       serialAssetContract.getDescription()
       this.serialAssets.push(serialAssetContract)

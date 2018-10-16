@@ -52,6 +52,5 @@ export class SerialAssetComponent implements OnInit {
     this.assetSeriesContract.setInstanceAddress()
     this.assetSeriesContract.setWebsocketInstanceAddress()
     this.assetSeriesContract.getDescription()
-    console.log(this.assetSeriesContract)
   }
 }

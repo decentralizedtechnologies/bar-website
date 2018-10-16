@@ -5,7 +5,7 @@ const AssetSeriesRegistryInterface = require('@abi/AssetSeriesRegistry.json')
 
 export class AssetSeriesRegistryContract extends Contract {
 
-  static readonly JSON_RPC_ADDRESS: string = '0xb1864df1388b7bc728d6ac4158095998eee2e9f5'
+  static readonly JSON_RPC_ADDRESS: string = '0xbc70a894b7f4f5b751f4be7020f07660e03ff5e1'
 
   static readonly _type: string = 'asset-series-registry'
 
