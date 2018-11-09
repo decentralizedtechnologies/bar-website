@@ -25,7 +25,6 @@ const routes: Routes = [
   {
     path: 'contract/:contractAddress/details',
     loadChildren: () => ContractDetailsModule,
-    canActivate: [UnlockRouteGuard],
   },
 ];
 

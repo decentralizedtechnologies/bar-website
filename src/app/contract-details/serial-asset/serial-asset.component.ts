@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletService } from '@decentralizedtechnologies/scui-lib';
+import { WalletService, Wallet } from '@decentralizedtechnologies/scui-lib';
 import { ActivatedRoute } from '@angular/router';
 import { SerialAssetContract } from '@contract/serial-asset.contract';
 import { AssetSeriesContract } from '@contract/asset-series.contract';
@@ -7,7 +7,7 @@ import { AssetSeriesContract } from '@contract/asset-series.contract';
 @Component({
   selector: 'app-serial-asset',
   templateUrl: './serial-asset.component.html',
-  styleUrls: ['./serial-asset.component.css']
+  styleUrls: ['./serial-asset.component.scss']
 })
 export class SerialAssetComponent implements OnInit {
 
@@ -21,9 +21,11 @@ export class SerialAssetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.wallet.setEmptyWallet()
+    const wallet: Wallet = this.wallet.getInstance()
     this.router.parent.params.subscribe(({ contractAddress }) => {
-      this.serialAssetContract = new SerialAssetContract(this.wallet.getInstance())
-      this.assetSeriesContract = new AssetSeriesContract(this.wallet.getInstance())
+      this.serialAssetContract = new SerialAssetContract(wallet)
+      this.assetSeriesContract = new AssetSeriesContract(wallet)
       console.log(this.serialAssetContract)
       console.log(this.assetSeriesContract)
       this.serialAssetContract.connect()
