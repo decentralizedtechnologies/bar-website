@@ -1,36 +1,59 @@
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 header-left">
+        <nav>
+          <a href="#" class="logo"><span>Blockchain</span>AssetRegistry.com</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
 <section id="details-serial-asset-component">
   <section class="section">
     <div class="container">
-      <article>
-        <small>asset at address</small>
-        <p>{{ serialAssetContract.address }}</p>
+      <article class="detail">
+        <label>Asset at address</label>
+        <a href="{{ ethService.etherscanURL }}/address/{{ serialAssetContract.address }}" target="_blank" class="eth-address">{{
+          serialAssetContract.address }}</a>
       </article>
-      <article>
-        <small>description</small>
-        <p>{{ serialAssetContract.description }}</p>
+      <article class="detail">
+        <label>Description</label>
+        <p *ngIf="serialAsset">{{ serialAsset.description }}</p>
       </article>
-      <article>
-        <small>serialNumber</small>
+      <article class="detail" *ngIf="serialAsset">
+        <label>Images</label>
+        <div *ngFor="let url of serialAsset.images">
+          <img src="{{ url }}" alt="url">
+        </div>
+      </article>
+      <article class="detail">
+        <label>Serial Number</label>
         <p>{{ serialAssetContract.serialNumber }}</p>
       </article>
-      <article>
-        <small>owner</small>
-        <p>{{ serialAssetContract.owner }}</p>
+      <article class="detail">
+        <label>Owner</label>
+        <a href="{{ ethService.etherscanURL }}/address/{{ serialAssetContract.owner }}" target="_blank" class="eth-address">{{
+          serialAssetContract.owner }}</a>
       </article>
-      <article>
-        <small>pendingOwner</small>
-        <p>{{ serialAssetContract.pendingOwner }}</p>
+      <article class="detail">
+        <label>Pending Owner</label>
+        <a href="{{ ethService.etherscanURL }}/address/{{ serialAssetContract.pendingOwner }}" target="_blank" class="eth-address">{{
+          serialAssetContract.pendingOwner }}</a>
       </article>
-      <h2>From Asset Series</h2>
-      <article>
-        <small>description</small>
-        <p>{{ assetSeriesContract.description }}</p>
-      </article>
-      <article>
-        <small>address</small>
-        <a [routerLink]="['/contract', assetSeriesContract.address, 'details', assetSeriesContract.type]" class="d-block">{{
-          assetSeriesContract.address }}</a>
-      </article>
+      <section class="section">
+        <h2 class="title">From Asset Series</h2>
+        <article class="detail">
+          <label>Description</label>
+          <p>{{ assetSeriesContract.description }}</p>
+        </article>
+        <article class="detail">
+          <label>Address</label>
+          <a [routerLink]="['/contract', assetSeriesContract.address, 'details', assetSeriesContract.type]" class="d-block eth-address">{{
+            assetSeriesContract.address }}</a>
+        </article>
+      </section>
     </div>
   </section>
   <!-- <section class="section">
@@ -40,3 +63,5 @@
     </div>
   </section> -->
 </section>
+
+<app-footer></app-footer>

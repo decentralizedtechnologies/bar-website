@@ -22,5 +22,53 @@
 @import "sass/ebm-global";
 
 html, body {
-  background-color: $gray-500;
+  background-color: $black;
+}
+
+.header {
+  background-color: $black;
+  position: absolute;
+  border: none;
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
+  .logo {
+    text-decoration: none;
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+    > span {
+      @include bold;
+    }
+  }
+}
+
+article.detail {
+  @include normalize-text;
+  margin-bottom: get-spacer(3);
+  > label {
+    @include bold;
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.section {
+  padding: get-spacer(4) 0;
+  .title {
+    text-transform: uppercase;
+    font-size: $h5-font-size;
+  }
+}
+
+.eth-address {
+  @include text-truncate;
+  max-width: 180px;
+  display: block;
 }

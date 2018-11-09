@@ -7,11 +7,13 @@ import { AssetSeriesComponent } from './asset-series/asset-series.component';
 import { AssetComponent } from './asset/asset.component';
 import { AssetBarTagComponent } from './asset-bar-tag/asset-bar-tag.component';
 import { SerialAssetComponent } from './serial-asset/serial-asset.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ContractDetailsRoutingModule
+    ContractDetailsRoutingModule,
+    SharedModule,
   ],
   declarations: [
     AssetSeriesRegistryComponent,

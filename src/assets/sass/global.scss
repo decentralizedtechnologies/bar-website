@@ -14,3 +14,7 @@
   position: relative;
   min-height: 100vh;
 }
+
+@mixin with-header {
+  padding-top: $header-height-control;
+}

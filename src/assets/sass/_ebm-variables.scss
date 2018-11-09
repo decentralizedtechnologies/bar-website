@@ -347,12 +347,12 @@ $importantize:              "!important"    !default;
 $font-family-alt:         'Oleo Script', cursive, $font-family-sans-serif;
 $font-family-serif:       'Sanchez', cursive, $font-family-sans-serif;
 
-$icon-fonts-path: "/icons/";
+$icon-fonts-path: "/assets/icons/";
 
 // Hero unit
 $hero-unit-height-control: 810px;
 $hero-unit-height-control-mobile: 100vh;
-$header-height-control: 98px;
+$header-height-control: 70px;
 $header-height-mobile: $header-height-control - 30;
 $logo-width-control-mobile: 94px;
 $logo-width-control: 132px;

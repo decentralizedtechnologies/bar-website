@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletService, Wallet } from '@decentralizedtechnologies/scui-lib';
+import { WalletService, Wallet, EthereumService } from '@decentralizedtechnologies/scui-lib';
 import { ActivatedRoute } from '@angular/router';
 import { SerialAssetContract } from '@contract/serial-asset.contract';
 import { AssetSeriesContract } from '@contract/asset-series.contract';
+import { HttpClient } from '@angular/common/http';
+import { SerialAsset } from '@model/serial-asset';
+import { SettingsService } from '@service/settings.service';
 
 @Component({
   selector: 'app-serial-asset',
@@ -15,19 +18,25 @@ export class SerialAssetComponent implements OnInit {
   serialAssetContract: SerialAssetContract
   serialAssetContractType = SerialAssetContract._type
 
+  serialAsset: SerialAsset
+
   constructor(
-    private wallet: WalletService,
+    private walletService: WalletService,
+    public ethService: EthereumService,
+    private http: HttpClient,
+    private settings: SettingsService,
     private router: ActivatedRoute) {
+    this.settings.onNetworkChange.subscribe((networkChanged) => {
+      this.ngOnInit()
+    })
   }
 
   ngOnInit() {
-    this.wallet.setEmptyWallet()
-    const wallet: Wallet = this.wallet.getInstance()
+    this.walletService.setEmptyWallet()
+    const wallet: Wallet = this.walletService.getInstance()
     this.router.parent.params.subscribe(({ contractAddress }) => {
       this.serialAssetContract = new SerialAssetContract(wallet)
       this.assetSeriesContract = new AssetSeriesContract(wallet)
-      console.log(this.serialAssetContract)
-      console.log(this.assetSeriesContract)
       this.serialAssetContract.connect()
       this.assetSeriesContract.connect()
       this.serialAssetContract.setWebsocketProvider()
@@ -43,9 +52,8 @@ export class SerialAssetComponent implements OnInit {
     this.serialAssetContract.getSerialNumber()
     this.serialAssetContract.getOwner()
     this.serialAssetContract.getPendingOwner()
-    this.serialAssetContract.getDescription()
-
     this.getAssetSeriesContractData()
+    this.getAssetDescription()
   }
 
   async getAssetSeriesContractData() {
@@ -54,5 +62,16 @@ export class SerialAssetComponent implements OnInit {
     this.assetSeriesContract.setInstanceAddress()
     this.assetSeriesContract.setWebsocketInstanceAddress()
     this.assetSeriesContract.getDescription()
+  }
+
+  async getAssetDescription() {
+    await this.serialAssetContract.getDescription()
+    const hash = this.serialAssetContract.description
+
+    this.http.get(`https://ipfs.infura.io/ipfs/${hash}`)
+      .toPromise()
+      .then((res: any) => {
+        this.serialAsset = new SerialAsset(res.data)
+      })
   }
 }

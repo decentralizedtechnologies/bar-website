@@ -1,0 +1,6 @@
+@import "sass/global";
+
+#details-serial-asset-component {
+  @include with-header;
+  @include main;
+}

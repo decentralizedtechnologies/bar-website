@@ -1,0 +1,32 @@
+@import "sass/global.scss";
+
+.network {
+  @include flex-row-end;
+  &:hover {
+    cursor: pointer;
+  }
+  > span {
+    @include flex-column-center;
+  }
+  .name {
+    font-size: $font-size-sm;
+  }
+  .toggle {
+    &:after {
+      margin-left: get-spacer(2);
+      font-family: 'icomoon';
+    }
+  }
+  &.mainnet {
+    .toggle:after {
+      content: '\e671';
+      color: $green;
+    }
+  }
+  &.ropsten {
+    .toggle:after {
+      content: '\e670';
+      color: $red;
+    }
+  }
+}

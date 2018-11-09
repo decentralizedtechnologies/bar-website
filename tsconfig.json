@@ -42,7 +42,7 @@
         "app/@error/*"
       ],
       "@shared/*": [
-        "app/@shared/*"
+        "app/shared/*"
       ],
       "@guard/*": [
         "app/@guard/*"
