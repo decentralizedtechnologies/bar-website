@@ -23,10 +23,6 @@ const config = merge(Config, {
     BrowserModule,
     HttpClientModule,
     SCUILibModule,
-    LoginModule,
-    ContractCreateModule,
-    ContractDeployModule,
-    ContractDetailsModule,
     AppRoutingModule,
   ],
   providers: [{

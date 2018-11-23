@@ -10,8 +10,8 @@ export class SettingsService {
   onNetworkChange: Subject<any> = new Subject<any>()
 
   networks: Array<string> = [
+    Network.testnet,
     Network.mainnet,
-    Network.testnet
   ]
 
   constructor(

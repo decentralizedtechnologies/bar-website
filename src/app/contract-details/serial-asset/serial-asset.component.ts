@@ -26,13 +26,13 @@ export class SerialAssetComponent implements OnInit {
     private http: HttpClient,
     private settings: SettingsService,
     private router: ActivatedRoute) {
+    this.walletService.setEmptyWallet()
     this.settings.onNetworkChange.subscribe((networkChanged) => {
       this.ngOnInit()
     })
   }
 
   ngOnInit() {
-    this.walletService.setEmptyWallet()
     const wallet: Wallet = this.walletService.getInstance()
     this.router.parent.params.subscribe(({ contractAddress }) => {
       this.serialAssetContract = new SerialAssetContract(wallet)
